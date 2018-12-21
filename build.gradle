@@ -1,0 +1,43 @@
+plugins {
+	id 'org.unbroken-dome.test-sets' version '1.4.2'
+	id 'net.ltgt.apt' version '0.19'
+}
+
+plugins {
+  id "com.github.johnrengelman.shadow" version "4.0.3"
+}
+
+apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'idea'
+apply plugin: 'eclipse'
+
+group = 'janusgraph-import'
+
+dependencies {
+	compile group: 'org.apache.commons', name: 'commons-csv', version: '1.6'
+	
+	compile (group: 'ch.qos.logback', name: 'logback-core', version: '1.2.3')
+	compile (group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3')
+
+	compile (group: 'org.apache.commons', name: 'commons-lang3', version: '3.7')
+
+	compile 'org.janusgraph:janusgraph-core:0.3.1'
+	compile 'org.janusgraph:janusgraph-es:0.3.1'
+	compile 'org.janusgraph:janusgraph-hbase:0.3.1'
+	compile 'org.janusgraph:janusgraph-cql:0.3.1'
+	
+	annotationProcessor 'org.projectlombok:lombok:1.18.4'
+	
+	compile 'info.picocli:picocli:3.8.2'
+
+	testCompile (group: 'co.unruly', name: 'java-8-matchers', version: '1.5')
+}
+
+shadowJar {
+	manifest {
+		attributes(
+		'Main-Class': 'org.janusgraph.bulkimport.Import'
+		)
+	}
+}
