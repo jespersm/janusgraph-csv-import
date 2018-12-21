@@ -1,6 +1,6 @@
-# JanusGraph CVS Loader
+# JanusGraph CSV Loader
 
-JanusGraph CVS Loader is a Java utility for bulk-loading data into a JanusGraph database.
+JanusGraph CSV Loader is a Java utility for bulk-loading data into a JanusGraph database.
 
 ## Usage
 
