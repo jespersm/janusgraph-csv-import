@@ -11,8 +11,10 @@ apply plugin: 'java'
 apply plugin: 'maven'
 apply plugin: 'idea'
 apply plugin: 'eclipse'
+apply plugin: 'application'
 
 group = 'janusgraph-import'
+mainClassName = "com.github.jespersm.janusgraph.csvimport.Import"
 
 dependencies {
 	compile group: 'org.apache.commons', name: 'commons-csv', version: '1.6'
@@ -26,6 +28,7 @@ dependencies {
 	compile 'org.janusgraph:janusgraph-es:0.3.1'
 	compile 'org.janusgraph:janusgraph-hbase:0.3.1'
 	compile 'org.janusgraph:janusgraph-cql:0.3.1'
+	compile 'org.janusgraph:janusgraph-berkeleyje:0.3.1'
 	
 	annotationProcessor 'org.projectlombok:lombok:1.18.4'
 	
@@ -37,7 +40,8 @@ dependencies {
 shadowJar {
 	manifest {
 		attributes(
-		'Main-Class': 'org.janusgraph.bulkimport.Import'
+		'Main-Class': mainClassName
 		)
 	}
 }
+
