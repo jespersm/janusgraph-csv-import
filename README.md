@@ -66,6 +66,40 @@ For files containing information about edges only:
 
 Remember, the types of the IDs and START_ID / END_ID must match. There is no warning against that.
 
+## Examples:
+
+Assume you have this setting file, `import.properties`:
+```
+storage.backend=berkeleyje
+storage.directory=some-folder
+```
+(please see [JanusGraph configuration documentation](https://docs.janusgraph.org/0.3.1/configuration.html) for what to put into this file)
+
+And you have this file containing persons, `nodes.csv`:
+```
+id:long:ID,name:string
+1,"Bob"
+2,"Alice"
+3,"Charlie"
+```
+
+And you have this file containing relationships, `edges.csv`:
+```
+id:long:START_ID,id:long:END_ID,:TYPE,since:date
+1,2,"KNOWS",2018-06-24
+2,3,"MET",2014-03-11
+```
+
+Now, you can import the graph by using Gradle directly:
+
+```
+$ ./gradlew run --args="--config=import.properties --nodes=Person=nodes.csv --relationships=edges.csv"
+```
+
+This will populate the tree nodes and two edges into a JanusGraph graph database backed by BerkeleyJE, as specified in the config file.
+
+You can use the "shadowJar" task in Gradle to build a fat Jar containing all the dependencies for running the importer without Gradle.
+
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
