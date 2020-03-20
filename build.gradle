@@ -16,21 +16,28 @@ apply plugin: 'application'
 group = 'janusgraph-import'
 mainClassName = "com.github.jespersm.janusgraph.csvimport.Import"
 
+repositories {
+	mavenCentral()
+  maven {
+      url "http://download.oracle.com/maven"
+  }
+}
+
 dependencies {
-	compile group: 'org.apache.commons', name: 'commons-csv', version: '1.6'
+	compile group: 'org.apache.commons', name: 'commons-csv', version: '1.8'
 	
 	compile (group: 'ch.qos.logback', name: 'logback-core', version: '1.2.3')
 	compile (group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3')
 
-	compile (group: 'org.apache.commons', name: 'commons-lang3', version: '3.7')
+	compile (group: 'org.apache.commons', name: 'commons-lang3', version: '3.9')
 
-	compile 'org.janusgraph:janusgraph-core:0.3.1'
-	compile 'org.janusgraph:janusgraph-es:0.3.1'
-	compile 'org.janusgraph:janusgraph-hbase:0.3.1'
-	compile 'org.janusgraph:janusgraph-cql:0.3.1'
-	compile 'org.janusgraph:janusgraph-berkeleyje:0.3.1'
+	compile 'org.janusgraph:janusgraph-core:0.4.1'
+	compile 'org.janusgraph:janusgraph-es:0.4.1'
+	compile 'org.janusgraph:janusgraph-hbase:0.4.1'
+	compile 'org.janusgraph:janusgraph-cql:0.4.1'
+	compile 'org.janusgraph:janusgraph-berkeleyje:0.4.1'
 	
-	annotationProcessor 'org.projectlombok:lombok:1.18.4'
+	annotationProcessor 'org.projectlombok:lombok:1.18.12'
 	
 	compile 'info.picocli:picocli:3.8.2'
 
